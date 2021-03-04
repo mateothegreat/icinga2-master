@@ -1,0 +1,20 @@
+- name: "Setup icinga repo"
+  become: true
+  yum:
+    name:
+      - "epel-release"
+      - "centos-release-scl"
+      - "https://packages.icinga.com/epel/icinga-rpm-release-7-latest.noarch.rpm"
+
+- name: "Install packages"
+  become: true
+  yum:
+    name:
+      - "git"
+      - "python-pip"
+      - "icinga2"
+      - "icinga2-ido-mysql"
+      - "icingacli"
+      - "nagios-plugins-all"
+      - "mariadb"
+      - "mariadb-server"

@@ -1,0 +1,6 @@
+icinga2_master:
+  mysql:
+    host: "2.0.1.101"
+    port: "3306"
+    user: "root"
+    password: "root"

@@ -1,0 +1,14 @@
+- name: "Enable and start services"
+  become: true
+  systemd:
+    name: "{{ item }}"
+    state: "restarted"
+    enabled: "yes"
+  with_items:
+    - "icinga2"
+
+- name: "Restart icinga"
+  become: true
+  systemd:
+    name: "icinga2"
+    state: "restarted"

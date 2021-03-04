@@ -1,0 +1,13 @@
+namespace: "mateothegreat"
+name: "aws_vpc_delete"
+version: "0.0.1"
+readme: "README.md"
+authors:
+  - "Matthew Davis (https://matthewdavis.io)"
+description: "Provision icinga2 master nodes."
+license: ["MIT"]
+license_file: "COPYING"
+tags: ["icinga", "icinga2", "monitoring"]
+repository: "https://github.com/mateothegreat/icinga2-master.git"
+homepage: "https://github.com/mateothegreat/icinga2-master"
+issues: "https://github.com/mateothegreat/icinga2-master/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc"

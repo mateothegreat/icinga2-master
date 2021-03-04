@@ -1,0 +1,15 @@
+- name: "Enable icinga features"
+  become: true
+  shell: "icinga2 feature enable api command ido-mysql"
+
+- name: "Run icinga2 api setup to generate keys"
+  become: true
+  shell: "icinga2 api setup"
+
+- name: "Install ido-mysql.conf"
+  become: true
+  template:
+    src: "ido-mysql.conf.j2"
+    dest: "/etc/icinga2/features-available/ido-mysql.conf"
+  vars:
+    mysql: "{{ icinga2_master.mysql }}"

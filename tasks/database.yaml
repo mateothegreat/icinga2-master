@@ -1,0 +1,52 @@
+- name: "Install pymysql"
+  become: true
+  pip:
+    name: "pymysql"
+    state: "present"
+
+- name: "Setup mysql databases"
+  become: true
+  mysql_db:
+    login_host: "{{ icinga2_master.mysql.host }}"
+    login_port: "{{ icinga2_master.mysql.port }}"
+    login_user: "{{ icinga2_master.mysql.user }}"
+    login_password: "{{ icinga2_master.mysql.password }}"
+    name:
+      - "icinga"
+      - "director"
+    state: "present"
+
+- name: "Drop existing icinga mysql schema"
+  become: true
+  mysql_db:
+    login_host: "{{ icinga2_master.mysql.host }}"
+    login_port: "{{ icinga2_master.mysql.port }}"
+    login_user: "{{ icinga2_master.mysql.user }}"
+    login_password: "{{ icinga2_master.mysql.password }}"
+    name: "icinga"
+    state: "absent"
+
+- name: "Import icinga mysql schema"
+  become: true
+  mysql_db:
+    login_host: "{{ icinga2_master.mysql.host }}"
+    login_port: "{{ icinga2_master.mysql.port }}"
+    login_user: "{{ icinga2_master.mysql.user }}"
+    login_password: "{{ icinga2_master.mysql.password }}"
+    name: "icinga"
+    target: "/usr/share/icinga2-ido-mysql/schema/mysql.sql"
+    state: "import"
+
+#- name: "Setup mysql user"
+#  become: true
+#  mysql_user:
+#    login_host: "{{ icinga2_master.mysql.host }}"
+#    login_port: "{{ icinga2_master.mysql.port }}"
+#    login_user: "{{ icinga2_master.mysql.user }}"
+#    login_password: "{{ icinga2_master.mysql.password }}"
+#    append_privs: "yes"
+#    name: "icinga"
+#    password: "*F7EA22C777E1A8D2E1F61A2F9EBBD74FF489FF63"
+#    priv: "icinga.*:ALL"
+#    encrypted: "yes"
+#    state: "present"
